@@ -1,0 +1,26 @@
+event_id,event_type,event_time,affected_entity_type,affected_entity_id,event_description,impact_severity,response_action,resolution_time
+E1,ATTACK,2024-01-15T06:30:00,NODE,N2,Artillery strike destroys Forward Supply Point Alpha,CRITICAL,Evacuate personnel and assess damage,2024-01-15T08:00:00
+E2,INFRASTRUCTURE_DAMAGE,2024-01-15T06:45:00,ROUTE,R1,Highway Alpha damaged by artillery shells,HIGH,Initiate route repair and establish detours,2024-01-17T06:45:00
+E3,STRUCTURAL_FAILURE,2024-01-15T07:15:00,ROUTE,R2,Bridge B3 shows structural damage from heavy vehicle traffic,MEDIUM,Engineering assessment and weight restrictions,2024-01-16T07:15:00
+E4,WEATHER_EVENT,2024-01-15T08:00:00,ROUTE,R6,Winter storm impacts alternative mountain route,MEDIUM,Monitor conditions and adjust mission timing,2024-01-18T08:00:00
+E5,RESOURCE_ALERT,2024-01-15T12:00:00,NODE,N4,Battalion Position North fuel reaches critical level,HIGH,Launch emergency resupply Mission M1,2024-01-15T20:00:00
+E6,RESOURCE_ALERT,2024-01-15T12:00:00,NODE,N5,Battalion Position Central fuel reaches critical level,HIGH,Launch emergency resupply Mission M2,2024-01-15T19:30:00
+E7,RESOURCE_ALERT,2024-01-15T12:00:00,NODE,N6,Battalion Position South fuel reaches critical level,HIGH,Launch emergency resupply Mission M3,2024-01-15T21:00:00
+E8,MISSION_START,2024-01-15T14:00:00,MISSION,M1,Resupply convoy departs Main Supply Base for Battalion North,MEDIUM,Track convoy progress and maintain communications,2024-01-15T20:00:00
+E9,MISSION_START,2024-01-15T14:00:00,MISSION,M2,Resupply convoy departs Main Supply Base for Battalion Central,MEDIUM,Track convoy progress and maintain communications,2024-01-15T19:30:00
+E10,MISSION_START,2024-01-15T15:00:00,MISSION,M3,Resupply convoy departs Main Supply Base for Battalion South,MEDIUM,Track convoy progress and maintain communications,2024-01-15T21:00:00
+E11,MISSION_START,2024-01-15T16:00:00,MISSION,M4,Emergency resupply from Forward Point Bravo to Battalion North,LOW,Fast-track medical and fuel supplies,2024-01-15T18:00:00
+E12,MISSION_START,2024-01-15T16:00:00,MISSION,M5,Emergency resupply from Forward Point Bravo to Battalion Central,LOW,Fast-track medical and fuel supplies,2024-01-15T17:30:00
+E13,MAINTENANCE_COMPLETE,2024-01-15T18:00:00,VEHICLE,V4,Heavy Truck V4 completes maintenance and returns to service,LOW,Reassign vehicle to resupply operations,
+E14,MISSION_START,2024-01-15T18:00:00,MISSION,M6,Reconnaissance mission to assess Forward Supply Point Alpha damage,HIGH,Gather intelligence for reconstruction planning,2024-01-15T22:00:00
+E15,MISSION_COMPLETE,2024-01-15T20:00:00,MISSION,M1,Resupply Mission M1 successfully delivers to Battalion North,MEDIUM,Update inventory and plan next resupply,
+E16,CHECKPOINT,2024-01-16T00:00:00,SCENARIO,SCENARIO1,12-hour checkpoint - Assess overall logistics status,MEDIUM,Generate status report for command,
+E17,MISSION_START,2024-01-16T08:00:00,MISSION,M7,Aircraft alternative supply mission to Forward Point Bravo,LOW,Air delivery of critical fuel and ammunition,2024-01-16T10:00:00
+E18,CHECKPOINT,2024-01-16T12:00:00,SCENARIO,SCENARIO1,24-hour checkpoint - Reassess resource levels,MEDIUM,Generate status report for command,
+E19,REPAIR_COMPLETE,2024-01-16T07:15:00,ROUTE,R2,Bridge B3 repairs completed and route restored,MEDIUM,Resume full traffic on Secondary Route North,
+E20,CHECKPOINT,2024-01-17T00:00:00,SCENARIO,SCENARIO1,36-hour checkpoint - Evaluate mission success,MEDIUM,Generate status report for command,
+E21,REPAIR_COMPLETE,2024-01-17T06:45:00,ROUTE,R1,Highway Alpha repairs completed,HIGH,Resume primary route operations,
+E22,CHECKPOINT,2024-01-17T12:00:00,SCENARIO,SCENARIO1,48-hour checkpoint - Monitor sustainability,MEDIUM,Generate status report for command,
+E23,CHECKPOINT,2024-01-18T00:00:00,SCENARIO,SCENARIO1,60-hour checkpoint - Final assessment phase,MEDIUM,Generate status report for command,
+E24,WEATHER_CLEAR,2024-01-18T08:00:00,ROUTE,R6,Winter storm conditions clear on mountain route,MEDIUM,Resume normal operations on alternative route,
+E25,SCENARIO_END,2024-01-18T12:00:00,SCENARIO,SCENARIO1,72-hour scenario completion - Final evaluation,MEDIUM,Compile lessons learned and recommendations,
