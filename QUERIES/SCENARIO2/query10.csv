@@ -1,0 +1,7 @@
+﻿location_id,location_name,location_type,status,critical_shortages,active_disruptions,routes_compromised,total_routes,units_present,vulnerability_score,vulnerability_level,recommendation
+N4,Battalion Position North,COMBAT_UNIT,OPERATIONAL,5,1,0,3,3,19.0,HIGH,URGENT - SIGNIFICANT VULNERABILITIES PRESENT
+N5,Battalion Position Central,COMBAT_UNIT,OPERATIONAL,5,1,0,1,3,19.0,HIGH,URGENT - SIGNIFICANT VULNERABILITIES PRESENT
+N6,Battalion Position South,COMBAT_UNIT,OPERATIONAL,5,1,0,1,3,19.0,HIGH,URGENT - SIGNIFICANT VULNERABILITIES PRESENT
+N3,Forward Supply Point Bravo,FORWARD_DEPOT,DAMAGED,0,2,0,2,1,18.0,HIGH,URGENT - SIGNIFICANT VULNERABILITIES PRESENT
+N1,Main Supply Base Echo,MAIN_BASE,OPERATIONAL,0,0,1,4,1,2.0,LOW,STABLE - MAINTAIN CURRENT OPERATIONS
+N2,Forward Supply Point Alpha,FORWARD_DEPOT,OPERATIONAL,0,0,1,5,1,2.0,LOW,STABLE - MAINTAIN CURRENT OPERATIONS

@@ -1,0 +1,6 @@
+﻿mission_id,mission_type,priority,origin,destination,cargo_weight_kg,recommended_vehicle_ids,vehicle_details,currently_assigned_vehicles,total_capacity_kg
+M2,RESUPPLY,CRITICAL,N1,N5,5400.0,[V1],"[{id: V1, capacity: 12000, type: HEAVY_TRUCK}]","[V2, V8]",12000
+M1,RESUPPLY,CRITICAL,N1,N4,5000.0,[V1],"[{id: V1, capacity: 12000, type: HEAVY_TRUCK}]","[V1, V7]",12000
+M3,RESUPPLY,CRITICAL,N1,N6,5000.0,[V1],"[{id: V1, capacity: 12000, type: HEAVY_TRUCK}]","[V3, V9]",12000
+M5,EMERGENCY_RESUPPLY,CRITICAL,N2,N5,650.0,[V9],"[{id: V9, capacity: 3000, type: LIGHT_VEHICLE}]",[V6],3000
+M4,EMERGENCY_RESUPPLY,CRITICAL,N2,N4,550.0,[V9],"[{id: V9, capacity: 3000, type: LIGHT_VEHICLE}]",[V5],3000

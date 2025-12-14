@@ -1,0 +1,16 @@
+﻿location_id,location_name,resource_type,current_quantity,minimum_required,shortage_amount,shortage_percentage,severity,resource_criticality,daily_consumption
+N6,Battalion Position South,FUEL,320,500,180,36.0,MEDIUM,CRITICAL,780
+N4,Battalion Position North,FUEL,350,500,150,30.0,MEDIUM,CRITICAL,800
+N6,Battalion Position South,WATER,280,400,120,30.0,MEDIUM,CRITICAL,240
+N4,Battalion Position North,WATER,300,400,100,25.0,MEDIUM,CRITICAL,250
+N6,Battalion Position South,FOOD,380,500,120,24.0,LOW,HIGH,290
+N4,Battalion Position North,FOOD,400,500,100,20.0,LOW,HIGH,300
+N5,Battalion Position Central,FUEL,400,500,100,20.0,LOW,CRITICAL,850
+N5,Battalion Position Central,WATER,350,400,50,12.5,LOW,CRITICAL,270
+N6,Battalion Position South,AMMUNITION,1750,2000,250,12.5,LOW,CRITICAL,600
+N6,Battalion Position South,MEDICAL,175,200,25,12.5,LOW,HIGH,75
+N4,Battalion Position North,AMMUNITION,1800,2000,200,10.0,LOW,CRITICAL,600
+N4,Battalion Position North,MEDICAL,180,200,20,10.0,LOW,HIGH,80
+N5,Battalion Position Central,FOOD,450,500,50,10.0,LOW,HIGH,320
+N5,Battalion Position Central,AMMUNITION,1900,2000,100,5.0,LOW,CRITICAL,650
+N5,Battalion Position Central,MEDICAL,190,200,10,5.0,LOW,HIGH,85
