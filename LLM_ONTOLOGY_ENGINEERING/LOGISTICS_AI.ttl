@@ -1,0 +1,486 @@
+@prefix :      <http://example.org/battlelog#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+#################################################################
+# Ontology header + lightweight modularization
+#################################################################
+
+:BattlefieldLogisticsOntology a owl:Ontology ;
+  rdfs:label "Battlefield Logistics Decision Support Ontology"@en ;
+  rdfs:comment "Modules: Spatial/Geographic, Resources/Supply, Missions/Operations, Organization, Events/Disruptions. OWL 2 DL."@en .
+
+:ModuleSpatial a owl:Class ; rdfs:label "Spatial & Geographic Module"@en .
+:ModuleResources a owl:Class ; rdfs:label "Resource & Supply Module"@en .
+:ModuleMissions a owl:Class ; rdfs:label "Mission & Operations Module"@en .
+:ModuleOrganization a owl:Class ; rdfs:label "Organizational Module"@en .
+:ModuleEvents a owl:Class ; rdfs:label "Events & Disruptions Module"@en .
+
+#################################################################
+# Enumerations (OWL 2 oneOf)
+#################################################################
+
+:OperationalStatus a owl:Class ; rdfs:label "Operational Status"@en ;
+  owl:oneOf ( :OPERATIONAL :DEGRADED :DESTROYED :NON_OPERATIONAL ) .
+
+:RouteStatus a owl:Class ; rdfs:label "Route Status"@en ;
+  owl:oneOf ( :ROUTE_OPERATIONAL :ROUTE_DEGRADED :ROUTE_DAMAGED :ROUTE_BLOCKED ) .
+
+:ThreatLevel a owl:Class ; rdfs:label "Threat Level"@en ;
+  owl:oneOf ( :THREAT_LOW :THREAT_MEDIUM :THREAT_HIGH :THREAT_CRITICAL ) .
+
+:WeatherImpact a owl:Class ; rdfs:label "Weather Impact"@en ;
+  owl:oneOf ( :WEATHER_MINOR :WEATHER_MODERATE :WEATHER_SEVERE ) .
+
+:ProtectionLevel a owl:Class ; rdfs:label "Protection Level"@en ;
+  owl:oneOf ( :PROT_HIGH :PROT_MEDIUM :PROT_LOW ) .
+
+:DependencyLevel a owl:Class ; rdfs:label "Dependency Level"@en ;
+  owl:oneOf ( :DEP_CRITICAL :DEP_HIGH :DEP_MEDIUM :DEP_LOW ) .
+
+:PriorityLevel a owl:Class ; rdfs:label "Priority"@en ;
+  owl:oneOf ( :PRIO_CRITICAL :PRIO_HIGH :PRIO_MEDIUM :PRIO_LOW ) .
+
+:CriticalityLevel a owl:Class ; rdfs:label "Resource Criticality"@en ;
+  owl:oneOf ( :CRIT_CRITICAL :CRIT_HIGH :CRIT_MEDIUM :CRIT_LOW ) .
+
+:ResourceDependency a owl:Class ; rdfs:label "Resource Dependency"@en ;
+  owl:oneOf ( :DEP_NONE :DEP_LOW2 :DEP_MEDIUM2 :DEP_HIGH2 ) .
+
+:VehicleStatus a owl:Class ; rdfs:label "Vehicle Status"@en ;
+  owl:oneOf ( :VEH_OPERATIONAL :VEH_MAINTENANCE :VEH_DESTROYED ) .
+
+:ArmorLevel a owl:Class ; rdfs:label "Armor Level"@en ;
+  owl:oneOf ( :ARMOR_NONE :ARMOR_LIGHT :ARMOR_MEDIUM :ARMOR_HEAVY ) .
+
+:MissionStatus a owl:Class ; rdfs:label "Mission Status"@en ;
+  owl:oneOf ( :M_PLANNED :M_IN_PROGRESS :M_COMPLETED :M_FAILED ) .
+
+:VehicleMissionRole a owl:Class ; rdfs:label "Vehicle Mission Role"@en ;
+  owl:oneOf ( :ROLE_PRIMARY_TRANSPORT :ROLE_ESCORT :ROLE_AIR_TRANSPORT ) .
+
+:AssignmentType a owl:Class ; rdfs:label "Assignment Type"@en ;
+  owl:oneOf ( :ASSIGN_OPERATIONAL :ASSIGN_HQ :ASSIGN_DESTROYED ) .
+
+:RelationshipStrength a owl:Class ; rdfs:label "Relationship Strength"@en ;
+  owl:oneOf ( :RS_NONE :RS_LOW :RS_MEDIUM :RS_HIGH :RS_CRITICAL ) .
+
+:ImpactSeverity a owl:Class ; rdfs:label "Impact Severity"@en ;
+  owl:oneOf ( :IMPACT_CRITICAL :IMPACT_HIGH :IMPACT_MEDIUM :IMPACT_LOW ) .
+
+:UnitOfMeasure a owl:Class ; rdfs:label "Unit of Measure"@en ;
+  owl:oneOf ( :UOM_LITERS :UOM_UNITS :UOM_RATIONS :UOM_KG :UOM_KM :UOM_HOURS ) .
+
+# Enumeration individuals
+:OPERATIONAL a owl:NamedIndividual .
+:DEGRADED a owl:NamedIndividual .
+:DESTROYED a owl:NamedIndividual .
+:NON_OPERATIONAL a owl:NamedIndividual .
+
+:ROUTE_OPERATIONAL a owl:NamedIndividual .
+:ROUTE_DEGRADED a owl:NamedIndividual .
+:ROUTE_DAMAGED a owl:NamedIndividual .
+:ROUTE_BLOCKED a owl:NamedIndividual .
+
+:THREAT_LOW a owl:NamedIndividual .
+:THREAT_MEDIUM a owl:NamedIndividual .
+:THREAT_HIGH a owl:NamedIndividual .
+:THREAT_CRITICAL a owl:NamedIndividual .
+
+:WEATHER_MINOR a owl:NamedIndividual .
+:WEATHER_MODERATE a owl:NamedIndividual .
+:WEATHER_SEVERE a owl:NamedIndividual .
+
+:PROT_HIGH a owl:NamedIndividual .
+:PROT_MEDIUM a owl:NamedIndividual .
+:PROT_LOW a owl:NamedIndividual .
+
+:DEP_CRITICAL a owl:NamedIndividual .
+:DEP_HIGH a owl:NamedIndividual .
+:DEP_MEDIUM a owl:NamedIndividual .
+:DEP_LOW a owl:NamedIndividual .
+
+:PRIO_CRITICAL a owl:NamedIndividual .
+:PRIO_HIGH a owl:NamedIndividual .
+:PRIO_MEDIUM a owl:NamedIndividual .
+:PRIO_LOW a owl:NamedIndividual .
+
+:CRIT_CRITICAL a owl:NamedIndividual .
+:CRIT_HIGH a owl:NamedIndividual .
+:CRIT_MEDIUM a owl:NamedIndividual .
+:CRIT_LOW a owl:NamedIndividual .
+
+:DEP_NONE a owl:NamedIndividual .
+:DEP_LOW2 a owl:NamedIndividual .
+:DEP_MEDIUM2 a owl:NamedIndividual .
+:DEP_HIGH2 a owl:NamedIndividual .
+
+:VEH_OPERATIONAL a owl:NamedIndividual .
+:VEH_MAINTENANCE a owl:NamedIndividual .
+:VEH_DESTROYED a owl:NamedIndividual .
+
+:ARMOR_NONE a owl:NamedIndividual .
+:ARMOR_LIGHT a owl:NamedIndividual .
+:ARMOR_MEDIUM a owl:NamedIndividual .
+:ARMOR_HEAVY a owl:NamedIndividual .
+
+:M_PLANNED a owl:NamedIndividual .
+:M_IN_PROGRESS a owl:NamedIndividual .
+:M_COMPLETED a owl:NamedIndividual .
+:M_FAILED a owl:NamedIndividual .
+
+:ROLE_PRIMARY_TRANSPORT a owl:NamedIndividual .
+:ROLE_ESCORT a owl:NamedIndividual .
+:ROLE_AIR_TRANSPORT a owl:NamedIndividual .
+
+:ASSIGN_OPERATIONAL a owl:NamedIndividual .
+:ASSIGN_HQ a owl:NamedIndividual .
+:ASSIGN_DESTROYED a owl:NamedIndividual .
+
+:RS_NONE a owl:NamedIndividual .
+:RS_LOW a owl:NamedIndividual .
+:RS_MEDIUM a owl:NamedIndividual .
+:RS_HIGH a owl:NamedIndividual .
+:RS_CRITICAL a owl:NamedIndividual .
+
+:IMPACT_CRITICAL a owl:NamedIndividual .
+:IMPACT_HIGH a owl:NamedIndividual .
+:IMPACT_MEDIUM a owl:NamedIndividual .
+:IMPACT_LOW a owl:NamedIndividual .
+
+:UOM_LITERS a owl:NamedIndividual .
+:UOM_UNITS a owl:NamedIndividual .
+:UOM_RATIONS a owl:NamedIndividual .
+:UOM_KG a owl:NamedIndividual .
+:UOM_KM a owl:NamedIndividual .
+:UOM_HOURS a owl:NamedIndividual .
+
+#################################################################
+# Core Classes
+#################################################################
+
+### Location hierarchy
+:Location a owl:Class ; rdfs:label "Location"@en .
+:MainBase a owl:Class ; rdfs:subClassOf :Location ; rdfs:label "Main Base"@en .
+:ForwardDepot a owl:Class ; rdfs:subClassOf :Location ; rdfs:label "Forward Depot"@en .
+:CombatPosition a owl:Class ; rdfs:subClassOf :Location ; rdfs:label "Combat Position"@en .
+
+### Route
+:Route a owl:Class ; rdfs:label "Route"@en .
+
+### Military units
+:MilitaryUnit a owl:Class ; rdfs:label "Military Unit"@en .
+:LogisticsUnit a owl:Class ; rdfs:subClassOf :MilitaryUnit ; rdfs:label "Logistics Unit"@en .
+:CombatUnit a owl:Class ; rdfs:subClassOf :MilitaryUnit ; rdfs:label "Combat Unit"@en .
+
+:CommandLevel a owl:Class ; rdfs:label "Command Level"@en ;
+  owl:oneOf ( :BrigadeLevel :BattalionLevel :CompanyLevel ) .
+:BrigadeLevel a owl:NamedIndividual .
+:BattalionLevel a owl:NamedIndividual .
+:CompanyLevel a owl:NamedIndividual .
+
+### Resources
+:Resource a owl:Class ; rdfs:label "Resource"@en .
+:Fuel a owl:Class ; rdfs:subClassOf :Resource ; rdfs:label "Fuel"@en .
+:Ammunition a owl:Class ; rdfs:subClassOf :Resource ; rdfs:label "Ammunition"@en .
+:Food a owl:Class ; rdfs:subClassOf :Resource ; rdfs:label "Food"@en .
+:Water a owl:Class ; rdfs:subClassOf :Resource ; rdfs:label "Water"@en .
+:Medical a owl:Class ; rdfs:subClassOf :Resource ; rdfs:label "Medical"@en .
+
+### Vehicles
+:Vehicle a owl:Class ; rdfs:label "Vehicle"@en .
+:HeavyTruck a owl:Class ; rdfs:subClassOf :Vehicle ; rdfs:label "Heavy Truck"@en .
+:LightVehicle a owl:Class ; rdfs:subClassOf :Vehicle ; rdfs:label "Light Vehicle"@en .
+:AircraftTransport a owl:Class ; rdfs:subClassOf :Vehicle ; rdfs:label "Aircraft Transport"@en .
+
+### Missions
+:Mission a owl:Class ; rdfs:label "Mission"@en .
+:ResupplyMission a owl:Class ; rdfs:subClassOf :Mission ; rdfs:label "Resupply Mission"@en .
+:EmergencyResupply a owl:Class ; rdfs:subClassOf :Mission ; rdfs:label "Emergency Resupply"@en .
+:ReconnaissanceMission a owl:Class ; rdfs:subClassOf :Mission ; rdfs:label "Reconnaissance Mission"@en .
+:AlternativeSupply a owl:Class ; rdfs:subClassOf :Mission ; rdfs:label "Alternative Supply"@en .
+
+### Disruptions
+:Disruption a owl:Class ; rdfs:label "Disruption"@en .
+:FacilityDestruction a owl:Class ; rdfs:subClassOf :Disruption ; rdfs:label "Facility Destruction"@en .
+:RouteDamage a owl:Class ; rdfs:subClassOf :Disruption ; rdfs:label "Route Damage"@en .
+:InfrastructureDamage a owl:Class ; rdfs:subClassOf :Disruption ; rdfs:label "Infrastructure Damage"@en .
+:WeatherImpactDisruption a owl:Class ; rdfs:subClassOf :Disruption ; rdfs:label "Weather Impact"@en .
+:ResourceDepletion a owl:Class ; rdfs:subClassOf :Disruption ; rdfs:label "Resource Depletion"@en .
+
+### Events
+:Event a owl:Class ; rdfs:label "Event"@en .
+:AttackEvent a owl:Class ; rdfs:subClassOf :Event ; rdfs:label "Attack Event"@en .
+:InfrastructureDamageEvent a owl:Class ; rdfs:subClassOf :Event ; rdfs:label "Infrastructure Damage Event"@en .
+:StructuralFailureEvent a owl:Class ; rdfs:subClassOf :Event ; rdfs:label "Structural Failure Event"@en .
+:WeatherEvent a owl:Class ; rdfs:subClassOf :Event ; rdfs:label "Weather Event"@en .
+:ResourceAlertEvent a owl:Class ; rdfs:subClassOf :Event ; rdfs:label "Resource Alert Event"@en .
+:MissionEvent a owl:Class ; rdfs:subClassOf :Event ; rdfs:label "Mission Event"@en .
+:MaintenanceEvent a owl:Class ; rdfs:subClassOf :Event ; rdfs:label "Maintenance Event"@en .
+:CheckpointEvent a owl:Class ; rdfs:subClassOf :Event ; rdfs:label "Checkpoint Event"@en .
+
+#################################################################
+# Object Properties (relationships)
+#################################################################
+
+:CONNECTS_TO a owl:ObjectProperty ;
+  rdfs:domain :Location ; rdfs:range :Location ;
+  rdfs:label "connects to"@en .
+
+:DEPENDS_ON a owl:ObjectProperty ;
+  rdfs:domain :Location ; rdfs:range :Route ;
+  rdfs:label "depends on"@en .
+
+:ALTERNATIVE_TO a owl:ObjectProperty ;
+  rdfs:domain :Route ; rdfs:range :Route ;
+  rdfs:label "alternative to"@en .
+
+:STORES a owl:ObjectProperty ;
+  rdfs:domain :Location ; rdfs:range :Resource ;
+  rdfs:label "stores"@en .
+
+:SUPPLIES a owl:ObjectProperty ;
+  rdfs:domain :Location ; rdfs:range :Location ;
+  rdfs:label "supplies"@en .
+
+:REQUIRES a owl:ObjectProperty ;
+  rdfs:label "requires"@en .
+
+:ASSIGNED_TO a owl:ObjectProperty ;
+  rdfs:domain :Vehicle ; rdfs:range :Mission ;
+  rdfs:label "assigned to"@en .
+
+:ORIGINATES_FROM a owl:ObjectProperty ;
+  rdfs:domain :Mission ; rdfs:range :Location ;
+  rdfs:label "originates from"@en .
+
+:DELIVERS_TO a owl:ObjectProperty ;
+  rdfs:domain :Mission ; rdfs:range :Location ;
+  rdfs:label "delivers to"@en .
+
+:USES_ROUTE a owl:ObjectProperty ;
+  rdfs:domain :Mission ; rdfs:range :Route ;
+  rdfs:label "uses route"@en .
+
+:LOCATED_AT a owl:ObjectProperty ;
+  rdfs:label "located at"@en .
+
+:AFFECTS a owl:ObjectProperty ;
+  rdfs:domain :Disruption ; rdfs:label "affects"@en .
+
+:CASCADES_TO a owl:ObjectProperty ;
+  rdfs:domain :Disruption ; rdfs:range :Disruption ;
+  rdfs:label "cascades to"@en .
+
+:parent_unit a owl:ObjectProperty ;
+  rdfs:domain :MilitaryUnit ; rdfs:range :MilitaryUnit ;
+  rdfs:label "parent unit"@en .
+
+:location_node a owl:ObjectProperty ;
+  rdfs:domain :MilitaryUnit ; rdfs:range :Location ;
+  rdfs:label "assigned location"@en .
+
+#################################################################
+# Data Properties
+#################################################################
+
+:node_id a owl:DatatypeProperty ; rdfs:domain :Location ; rdfs:range xsd:string .
+:node_name a owl:DatatypeProperty ; rdfs:domain :Location ; rdfs:range xsd:string .
+:node_type a owl:DatatypeProperty ; rdfs:domain :Location ; rdfs:range xsd:string .
+
+:latitude a owl:DatatypeProperty ; rdfs:domain :Location ; rdfs:range xsd:decimal .
+:longitude a owl:DatatypeProperty ; rdfs:domain :Location ; rdfs:range xsd:decimal .
+
+:cap_fuel a owl:DatatypeProperty ; rdfs:domain :Location ; rdfs:range xsd:decimal .
+:cap_ammo a owl:DatatypeProperty ; rdfs:domain :Location ; rdfs:range xsd:decimal .
+:cap_food a owl:DatatypeProperty ; rdfs:domain :Location ; rdfs:range xsd:decimal .
+:cap_water a owl:DatatypeProperty ; rdfs:domain :Location ; rdfs:range xsd:decimal .
+:cap_medical a owl:DatatypeProperty ; rdfs:domain :Location ; rdfs:range xsd:decimal .
+
+:operational_status a owl:DatatypeProperty ; rdfs:domain :Location ; rdfs:range xsd:string .
+:protection_level a owl:DatatypeProperty ; rdfs:domain :Location ; rdfs:range xsd:string .
+:personnel_count a owl:DatatypeProperty ; rdfs:domain :Location ; rdfs:range xsd:integer .
+
+:route_id a owl:DatatypeProperty ; rdfs:domain :Route ; rdfs:range xsd:string .
+:route_name a owl:DatatypeProperty ; rdfs:domain :Route ; rdfs:range xsd:string .
+:distance_km a owl:DatatypeProperty ; rdfs:domain :Route ; rdfs:range xsd:decimal .
+:road_quality a owl:DatatypeProperty ; rdfs:domain :Route ; rdfs:range xsd:string .
+:max_vehicle_weight_tons a owl:DatatypeProperty ; rdfs:domain :Route ; rdfs:range xsd:decimal .
+:normal_travel_time_hours a owl:DatatypeProperty ; rdfs:domain :Route ; rdfs:range xsd:decimal .
+:current_travel_time_hours a owl:DatatypeProperty ; rdfs:domain :Route ; rdfs:range xsd:decimal .
+:route_status a owl:DatatypeProperty ; rdfs:domain :Route ; rdfs:range xsd:string .
+:threat_level a owl:DatatypeProperty ; rdfs:domain :Route ; rdfs:range xsd:string .
+:weather_impact a owl:DatatypeProperty ; rdfs:domain :Route ; rdfs:range xsd:string .
+
+:unit_id a owl:DatatypeProperty ; rdfs:domain :MilitaryUnit ; rdfs:range xsd:string .
+:unit_name a owl:DatatypeProperty ; rdfs:domain :MilitaryUnit ; rdfs:range xsd:string .
+:unit_type a owl:DatatypeProperty ; rdfs:domain :MilitaryUnit ; rdfs:range xsd:string .
+:command_level a owl:DatatypeProperty ; rdfs:domain :MilitaryUnit ; rdfs:range xsd:string .
+:personnel_strength a owl:DatatypeProperty ; rdfs:domain :MilitaryUnit ; rdfs:range xsd:integer .
+:combat_readiness a owl:DatatypeProperty ; rdfs:domain :MilitaryUnit ; rdfs:range xsd:decimal .
+:equipment_status a owl:DatatypeProperty ; rdfs:domain :MilitaryUnit ; rdfs:range xsd:string .
+:fuel_dependency a owl:DatatypeProperty ; rdfs:domain :MilitaryUnit ; rdfs:range xsd:string .
+:ammo_dependency a owl:DatatypeProperty ; rdfs:domain :MilitaryUnit ; rdfs:range xsd:string .
+
+:resource_id a owl:DatatypeProperty ; rdfs:domain :Resource ; rdfs:range xsd:string .
+:resource_type a owl:DatatypeProperty ; rdfs:domain :Resource ; rdfs:range xsd:string .
+:current_quantity a owl:DatatypeProperty ; rdfs:domain :Resource ; rdfs:range xsd:decimal .
+:unit_measure a owl:DatatypeProperty ; rdfs:domain :Resource ; rdfs:range xsd:string .
+:minimum_required a owl:DatatypeProperty ; rdfs:domain :Resource ; rdfs:range xsd:decimal .
+:consumption_rate_per_day a owl:DatatypeProperty ; rdfs:domain :Resource ; rdfs:range xsd:decimal .
+:criticality_level a owl:DatatypeProperty ; rdfs:domain :Resource ; rdfs:range xsd:string .
+:expiration_days a owl:DatatypeProperty ; rdfs:domain :Resource ; rdfs:range xsd:integer .
+:resupply_priority a owl:DatatypeProperty ; rdfs:domain :Resource ; rdfs:range xsd:integer .
+
+:vehicle_id a owl:DatatypeProperty ; rdfs:domain :Vehicle ; rdfs:range xsd:string .
+:vehicle_type a owl:DatatypeProperty ; rdfs:domain :Vehicle ; rdfs:range xsd:string .
+:capacity_kg a owl:DatatypeProperty ; rdfs:domain :Vehicle ; rdfs:range xsd:decimal .
+:fuel_consumption_rate a owl:DatatypeProperty ; rdfs:domain :Vehicle ; rdfs:range xsd:decimal .
+:max_speed_kmh a owl:DatatypeProperty ; rdfs:domain :Vehicle ; rdfs:range xsd:decimal .
+:vehicle_status a owl:DatatypeProperty ; rdfs:domain :Vehicle ; rdfs:range xsd:string .
+:maintenance_required a owl:DatatypeProperty ; rdfs:domain :Vehicle ; rdfs:range xsd:boolean .
+:crew_size a owl:DatatypeProperty ; rdfs:domain :Vehicle ; rdfs:range xsd:integer .
+:armor_protection_level a owl:DatatypeProperty ; rdfs:domain :Vehicle ; rdfs:range xsd:string .
+
+:mission_id a owl:DatatypeProperty ; rdfs:domain :Mission ; rdfs:range xsd:string .
+:mission_type a owl:DatatypeProperty ; rdfs:domain :Mission ; rdfs:range xsd:string .
+:mission_priority a owl:DatatypeProperty ; rdfs:domain :Mission ; rdfs:range xsd:string .
+:resource_requirements_text a owl:DatatypeProperty ; rdfs:domain :Mission ; rdfs:range xsd:string .
+:start_time a owl:DatatypeProperty ; rdfs:domain :Mission ; rdfs:range xsd:dateTime .
+:estimated_completion_time a owl:DatatypeProperty ; rdfs:domain :Mission ; rdfs:range xsd:dateTime .
+:mission_status a owl:DatatypeProperty ; rdfs:domain :Mission ; rdfs:range xsd:string .
+:risk_level a owl:DatatypeProperty ; rdfs:domain :Mission ; rdfs:range xsd:string .
+:success_probability a owl:DatatypeProperty ; rdfs:domain :Mission ; rdfs:range xsd:decimal .
+
+:disruption_id a owl:DatatypeProperty ; rdfs:domain :Disruption ; rdfs:range xsd:string .
+:disruption_type a owl:DatatypeProperty ; rdfs:domain :Disruption ; rdfs:range xsd:string .
+:affected_entity_type a owl:DatatypeProperty ; rdfs:domain :Disruption ; rdfs:range xsd:string .
+:affected_entity_id a owl:DatatypeProperty ; rdfs:domain :Disruption ; rdfs:range xsd:string .
+:impact_severity a owl:DatatypeProperty ; rdfs:domain :Disruption ; rdfs:range xsd:string .
+:time_occurred a owl:DatatypeProperty ; rdfs:domain :Disruption ; rdfs:range xsd:dateTime .
+:estimated_repair_time_hours a owl:DatatypeProperty ; rdfs:domain :Disruption ; rdfs:range xsd:decimal .
+:cause a owl:DatatypeProperty ; rdfs:domain :Disruption ; rdfs:range xsd:string .
+:cascading_effects a owl:DatatypeProperty ; rdfs:domain :Disruption ; rdfs:range xsd:string .
+:mitigation_status a owl:DatatypeProperty ; rdfs:domain :Disruption ; rdfs:range xsd:string .
+:cascade_type a owl:DatatypeProperty ; rdfs:domain :Disruption ; rdfs:range xsd:string .
+
+:event_id a owl:DatatypeProperty ; rdfs:domain :Event ; rdfs:range xsd:string .
+:event_type a owl:DatatypeProperty ; rdfs:domain :Event ; rdfs:range xsd:string .
+:event_time a owl:DatatypeProperty ; rdfs:domain :Event ; rdfs:range xsd:dateTime .
+:resolution_time a owl:DatatypeProperty ; rdfs:domain :Event ; rdfs:range xsd:dateTime .
+:event_description a owl:DatatypeProperty ; rdfs:domain :Event ; rdfs:range xsd:string .
+:response_action a owl:DatatypeProperty ; rdfs:domain :Event ; rdfs:range xsd:string .
+
+#################################################################
+# Reified relationship nodes (edge properties)
+#################################################################
+
+:ConnectivityLink a owl:Class ; rdfs:label "Connectivity Link"@en .
+:SupplyLink a owl:Class ; rdfs:label "Supply Link"@en .
+:StorageLink a owl:Class ; rdfs:label "Storage Link"@en .
+:VehicleAssignment a owl:Class ; rdfs:label "Vehicle Assignment"@en .
+:MissionRouteLeg a owl:Class ; rdfs:label "Mission Route Leg"@en .
+:LocationAssignment a owl:Class ; rdfs:label "Location Assignment"@en .
+:ImpactLink a owl:Class ; rdfs:label "Impact Link"@en .
+:AltRouteLink a owl:Class ; rdfs:label "Alternative Route Link"@en .
+:DependencyLink a owl:Class ; rdfs:label "Dependency Link"@en .
+
+:fromLocation a owl:ObjectProperty ; rdfs:domain :ConnectivityLink ; rdfs:range :Location .
+:toLocation a owl:ObjectProperty ; rdfs:domain :ConnectivityLink ; rdfs:range :Location .
+:viaRoute a owl:ObjectProperty ; rdfs:domain :ConnectivityLink ; rdfs:range :Route .
+
+:link_route_id a owl:DatatypeProperty ; rdfs:domain :ConnectivityLink ; rdfs:range xsd:string .
+:link_distance_km a owl:DatatypeProperty ; rdfs:domain :ConnectivityLink ; rdfs:range xsd:decimal .
+:link_status a owl:DatatypeProperty ; rdfs:domain :ConnectivityLink ; rdfs:range xsd:string .
+:relationship_strength a owl:DatatypeProperty ; rdfs:domain :ConnectivityLink ; rdfs:range xsd:string .
+:link_criticality a owl:DatatypeProperty ; rdfs:domain :ConnectivityLink ; rdfs:range xsd:string .
+
+:dep_location a owl:ObjectProperty ; rdfs:domain :DependencyLink ; rdfs:range :Location .
+:dep_route a owl:ObjectProperty ; rdfs:domain :DependencyLink ; rdfs:range :Route .
+:dependency_level a owl:DatatypeProperty ; rdfs:domain :DependencyLink ; rdfs:range xsd:string .
+
+:alt_from a owl:ObjectProperty ; rdfs:domain :AltRouteLink ; rdfs:range :Route .
+:alt_to a owl:ObjectProperty ; rdfs:domain :AltRouteLink ; rdfs:range :Route .
+:cost_difference a owl:DatatypeProperty ; rdfs:domain :AltRouteLink ; rdfs:range xsd:decimal .
+:risk_difference a owl:DatatypeProperty ; rdfs:domain :AltRouteLink ; rdfs:range xsd:decimal .
+
+:storage_location a owl:ObjectProperty ; rdfs:domain :StorageLink ; rdfs:range :Location .
+:storage_resource a owl:ObjectProperty ; rdfs:domain :StorageLink ; rdfs:range :Resource .
+:stored_resource_type a owl:DatatypeProperty ; rdfs:domain :StorageLink ; rdfs:range xsd:string .
+:stored_quantity a owl:DatatypeProperty ; rdfs:domain :StorageLink ; rdfs:range xsd:decimal .
+
+:supply_from a owl:ObjectProperty ; rdfs:domain :SupplyLink ; rdfs:range :Location .
+:supply_to a owl:ObjectProperty ; rdfs:domain :SupplyLink ; rdfs:range :Location .
+:resource_flow a owl:DatatypeProperty ; rdfs:domain :SupplyLink ; rdfs:range xsd:string .
+:frequency a owl:DatatypeProperty ; rdfs:domain :SupplyLink ; rdfs:range xsd:string .
+
+:assign_vehicle a owl:ObjectProperty ; rdfs:domain :VehicleAssignment ; rdfs:range :Vehicle .
+:assign_mission a owl:ObjectProperty ; rdfs:domain :VehicleAssignment ; rdfs:range :Mission .
+:assign_role a owl:DatatypeProperty ; rdfs:domain :VehicleAssignment ; rdfs:range xsd:string .
+:assign_priority a owl:DatatypeProperty ; rdfs:domain :VehicleAssignment ; rdfs:range xsd:string .
+
+:leg_mission a owl:ObjectProperty ; rdfs:domain :MissionRouteLeg ; rdfs:range :Mission .
+:leg_route a owl:ObjectProperty ; rdfs:domain :MissionRouteLeg ; rdfs:range :Route .
+:sequence a owl:DatatypeProperty ; rdfs:domain :MissionRouteLeg ; rdfs:range xsd:integer .
+:planned_time a owl:DatatypeProperty ; rdfs:domain :MissionRouteLeg ; rdfs:range xsd:decimal .
+
+:la_subject a owl:ObjectProperty ; rdfs:domain :LocationAssignment ; rdfs:range owl:Thing .
+:la_location a owl:ObjectProperty ; rdfs:domain :LocationAssignment ; rdfs:range :Location .
+:assignment_type a owl:DatatypeProperty ; rdfs:domain :LocationAssignment ; rdfs:range xsd:string .
+:timestamp a owl:DatatypeProperty ; rdfs:domain :LocationAssignment ; rdfs:range xsd:dateTime .
+
+:impact_disruption a owl:ObjectProperty ; rdfs:domain :ImpactLink ; rdfs:range :Disruption .
+:impact_target_location a owl:ObjectProperty ; rdfs:domain :ImpactLink ; rdfs:range :Location .
+:impact_target_route a owl:ObjectProperty ; rdfs:domain :ImpactLink ; rdfs:range :Route .
+:impact_target_mission a owl:ObjectProperty ; rdfs:domain :ImpactLink ; rdfs:range :Mission .
+:impact_target_vehicle a owl:ObjectProperty ; rdfs:domain :ImpactLink ; rdfs:range :Vehicle .
+:impact_target_unit a owl:ObjectProperty ; rdfs:domain :ImpactLink ; rdfs:range :MilitaryUnit .
+:impact_degree a owl:DatatypeProperty ; rdfs:domain :ImpactLink ; rdfs:range xsd:string .
+:impact_type a owl:DatatypeProperty ; rdfs:domain :ImpactLink ; rdfs:range xsd:string .
+
+#################################################################
+# Key OWL constraints (structural)
+#################################################################
+
+:Vehicle rdfs:subClassOf [
+  a owl:Restriction ;
+  owl:onProperty :ASSIGNED_TO ;
+  owl:maxCardinality "1"^^xsd:nonNegativeInteger
+] .
+
+:origin_node a owl:ObjectProperty ; rdfs:domain :Route ; rdfs:range :Location .
+:destination_node a owl:ObjectProperty ; rdfs:domain :Route ; rdfs:range :Location .
+
+:Mission rdfs:subClassOf
+  [ a owl:Restriction ; owl:onProperty :ORIGINATES_FROM ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass :Location ],
+  [ a owl:Restriction ; owl:onProperty :DELIVERS_TO ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass :Location ] .
+
+:Route rdfs:subClassOf
+  [ a owl:Restriction ; owl:onProperty :origin_node ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass :Location ],
+  [ a owl:Restriction ; owl:onProperty :destination_node ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass :Location ] .
+
+#################################################################
+# Scenario Individuals (same as before)
+# (Locations, Routes, Units, Resources, Vehicles, Missions, Disruptions, Events,
+#  and explicit relationships remain unchanged)
+#################################################################
+
+# >>> To keep this message readable, paste the same Individuals/Scenario blocks
+# >>> from the previous version starting at:
+# >>>   "########################  # 6 Locations"
+# >>> through the end, unchanged.
+# >>> (They had no Greek labels, so no further edits are needed.)
+#
+# If you want, I can paste the full scenario block again in one piece.
+#################################################################
+
+:ValidationPolicy a owl:AnnotationProperty .
+:SWRLHint a owl:AnnotationProperty .
+
+:BattlefieldLogisticsOntology :ValidationPolicy
+  "Use SHACL for: (1) resource conservation (used <= available), (2) route feasibility (blocked routes cannot be used unless air), (3) temporal consistency (resolution_time >= event_time), (4) vehicle one-mission-at-a-time with time windows."@en .
+
+:BattlefieldLogisticsOntology :SWRLHint
+  "Possible SWRL rules: infer ResourceShortage if current_quantity < minimum_required; infer HighRiskMission if uses_route threat_level=CRITICAL or weather_impact=SEVERE; infer VulnerableUnit if located_at depends_on damaged routes and fuel_dependency HIGH."@en .

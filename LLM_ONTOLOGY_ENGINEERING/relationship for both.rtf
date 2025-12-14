@@ -1,0 +1,24 @@
+{\rtf1\ansi\ansicpg1253\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 .AppleSystemUIFontMonospaced-Regular;}
+{\colortbl;\red255\green255\blue255;\red42\green44\blue51;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c21961\c22745\c25882;\cssrgb\c100000\c100000\c100000;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 relationship_type,source_entity_type,target_entity_type,properties,description,cypher_example\
+CONNECTS_TO,NODE,NODE,distance_km|travel_time|route_id,Represents a route between two nodes,MATCH (n1:Node)-[r:CONNECTS_TO]->(n2:Node) WHERE r.route_id = 'R1'\
+STORES,NODE,RESOURCE,quantity|capacity|criticality,Node stores a specific resource,MATCH (n:Node)-[r:STORES]->(res:Resource) WHERE res.resource_type = 'FUEL'\
+LOCATED_AT,VEHICLE,NODE,timestamp|availability,Vehicle current location,MATCH (v:Vehicle)-[r:LOCATED_AT]->(n:Node)\
+ASSIGNED_TO,VEHICLE,MISSION,role|priority,Vehicle assigned to mission,MATCH (v:Vehicle)-[r:ASSIGNED_TO]->(m:Mission)\
+REQUIRES,MISSION,RESOURCE,quantity|priority,Mission requires specific resources,MATCH (m:Mission)-[r:REQUIRES]->(res:Resource)\
+AFFECTS,DISRUPTION,NODE,severity|impact_duration,Disruption affects a node,MATCH (d:Disruption)-[r:AFFECTS]->(n:Node) WHERE r.severity = 'CRITICAL'\
+AFFECTS,DISRUPTION,ROUTE,severity|impact_duration,Disruption affects a route,MATCH (d:Disruption)-[r:AFFECTS]->(rt:Route)\
+ORIGINATES_FROM,MISSION,NODE,departure_time,Mission starts from node,MATCH (m:Mission)-[r:ORIGINATES_FROM]->(n:Node)\
+DELIVERS_TO,MISSION,NODE,arrival_time|delivery_items,Mission delivers to node,MATCH (m:Mission)-[r:DELIVERS_TO]->(n:Node)\
+USES_ROUTE,MISSION,ROUTE,planned_time|actual_time,Mission uses specific route,MATCH (m:Mission)-[r:USES_ROUTE]->(rt:Route)\
+SUPPLIES,NODE,NODE,resource_flow|frequency,Supply relationship between nodes,MATCH (n1:Node)-[r:SUPPLIES]->(n2:Node)\
+DEPENDS_ON,NODE,ROUTE,dependency_level,Node depends on route for supply,MATCH (n:Node)-[r:DEPENDS_ON]->(rt:Route)\
+CASCADES_TO,DISRUPTION,DISRUPTION,impact_chain|probability,One disruption causes another,MATCH (d1:Disruption)-[r:CASCADES_TO]->(d2:Disruption)\
+ALTERNATIVE_TO,ROUTE,ROUTE,cost_difference|risk_difference,Route serves as alternative,MATCH (r1:Route)-[r:ALTERNATIVE_TO]->(r2:Route)}
