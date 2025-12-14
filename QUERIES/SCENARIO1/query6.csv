@@ -1,0 +1,7 @@
+﻿facility_id,facility_name,facility_type,operational_status,units_dependent,locations_supplied,total_connected_routes,usable_routes,current_disruptions,criticality_score,risk_category
+N2,Forward Supply Point Alpha,FORWARD_DEPOT,DESTROYED,1,0,2,0,1,20.0,CRITICAL SPOF
+N4,Battalion Position North,COMBAT_UNIT,OPERATIONAL,3,0,3,0,1,16.0,CRITICAL SPOF
+N5,Battalion Position Central,COMBAT_UNIT,OPERATIONAL,3,0,1,0,1,16.0,CRITICAL SPOF
+N6,Battalion Position South,COMBAT_UNIT,OPERATIONAL,3,0,1,0,1,16.0,CRITICAL SPOF
+N3,Forward Supply Point Bravo,FORWARD_DEPOT,OPERATIONAL,1,3,5,3,0,9.0,MODERATE RISK
+N1,Main Supply Base Echo,MAIN_BASE,OPERATIONAL,1,0,4,3,0,3.0,LOW RISK

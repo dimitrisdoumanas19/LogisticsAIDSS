@@ -1,0 +1,2 @@
+﻿overall_resilience_percentage,resilience_status,route_operational_pct,critical_resources_adequate_pct,nodes_operational_pct,vehicles_operational_pct,avg_mission_success_pct,routes_operational,total_routes,resources_adequate,total_critical_resources,nodes_operational,total_nodes
+69.67,MODERATE,75.0,50.0,83.33,86.67,85.33,6,8,15,30,5,6

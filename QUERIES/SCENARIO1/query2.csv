@@ -1,0 +1,8 @@
+﻿destination_id,destination_name,route_ids,total_distance_km,estimated_travel_hours,risk_level
+N4,Battalion Position North,[R7],115.0,5.0,MEDIUM
+N4,Battalion Position North,"[R2, R3]",140.0,6.0,MEDIUM
+N4,Battalion Position North,"[R6, R3]",165.0,8.5,LOW
+N5,Battalion Position Central,"[R2, R4]",133.0,5.7,MEDIUM
+N5,Battalion Position Central,"[R6, R4]",158.0,8.2,LOW
+N6,Battalion Position South,"[R2, R5]",147.0,6.3,MEDIUM
+N6,Battalion Position South,"[R6, R5]",172.0,8.8,MEDIUM
