@@ -1,0 +1,7 @@
+node_id,node_name,node_type,latitude,longitude,capacity_fuel,capacity_ammo,capacity_food,capacity_water,capacity_medical,operational_status,protection_level,personnel_count
+N1,Main Supply Base Echo,MAIN_BASE,50.4501,30.5234,50000,30000,20000,15000,5000,OPERATIONAL,HIGH,250
+N2,Forward Supply Point Alpha,FORWARD_DEPOT,50.8547,31.2341,8000,12000,3000,2000,800,DESTROYED,MEDIUM,0
+N3,Forward Supply Point Bravo,FORWARD_DEPOT,50.7234,31.5678,10000,15000,4000,2500,1000,OPERATIONAL,MEDIUM,45
+N4,Battalion Position North,COMBAT_UNIT,51.0123,31.8901,500,2000,500,400,200,OPERATIONAL,LOW,800
+N5,Battalion Position Central,COMBAT_UNIT,50.9456,31.6543,500,2000,500,400,200,OPERATIONAL,LOW,850
+N6,Battalion Position South,COMBAT_UNIT,50.8789,31.4321,500,2000,500,400,200,OPERATIONAL,LOW,780

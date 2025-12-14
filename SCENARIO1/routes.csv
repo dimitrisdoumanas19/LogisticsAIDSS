@@ -1,0 +1,9 @@
+route_id,route_name,origin_node,destination_node,distance_km,normal_travel_time_hours,current_travel_time_hours,route_status,road_quality,threat_level,max_vehicle_weight_tons,weather_impact
+R1,Highway Alpha,N1,N2,85,2.5,6.0,DAMAGED,POOR,HIGH,40,SEVERE
+R2,Secondary Route North,N1,N3,95,3.0,4.5,DEGRADED,FAIR,MEDIUM,35,MODERATE
+R3,Forward Supply Route A,N3,N4,45,1.5,1.5,OPERATIONAL,GOOD,LOW,40,MINOR
+R4,Forward Supply Route B,N3,N5,38,1.2,1.2,OPERATIONAL,GOOD,LOW,40,MINOR
+R5,Forward Supply Route C,N3,N6,52,1.8,1.8,OPERATIONAL,GOOD,MEDIUM,40,MINOR
+R6,Alternative Mountain Route,N1,N3,120,5.0,7.0,OPERATIONAL,POOR,LOW,25,SEVERE
+R7,Direct Route North,N1,N4,115,3.5,5.0,DEGRADED,FAIR,MEDIUM,30,MODERATE
+R8,Cross-Connect Route,N2,N4,55,1.8,999.0,BLOCKED,DESTROYED,CRITICAL,0,SEVERE
